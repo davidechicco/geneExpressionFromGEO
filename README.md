@@ -41,7 +41,7 @@ The last parameter allows you to decide if you want the function to print messag
 
 # An example
 
-We want to retrieve the gene expression dataset with GEO accession GSE3268  of the platform GPL96:
+We want to retrieve the gene expression dataset with GEO accession [GSE3268](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE3268)  of the platform [GPL96](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL96):
 
     associateSymbolsToGenes <- TRUE
     verbose <- TRUE
