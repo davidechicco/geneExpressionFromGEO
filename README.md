@@ -14,24 +14,13 @@ This function has been designed for beginners and users having limited experienc
 To run `getGeneExpressionFromGEO`, you need to have the following programs and packages installed in your machine:
 
 * R (version > 3.1)
-* R Bioconductor packages **Biobase, annotate, GEOquery** with the following commands:
+* R Bioconductor packages **Biobase, annotate, GEOquery**
 
-`if (!requireNamespace("BiocManager", quietly = TRUE))`
-`install.packages("BiocManager")`
-`listOfBiocPackages <- c("Biobase", "annotate", "GEOquery")`
+You can install the `getGeneExpressionFromGEO` package and its dependencies from CRAN, with the following command:
 
-`bioCpackagesNotInstalled <- which( !listOfBiocPackages %in% rownames(installed.packages()) )`
-`cat("package missing listOfBiocPackages[", bioCpackagesNotInstalled, "]: ", listOfBiocPackages[bioCpackagesNotInstalled], "\n", sep="")`
+    `install.packages("geneExpressionFromGEO", repos='http://cran.us.r-project.org')`
+    `library("geneExpressionFromGEO")`
 
-`# check there's still something left to install`
-`if( length(bioCpackagesNotInstalled) ) {`
-   `BiocManager::install(listOfBiocPackages[bioCpackagesNotInstalled])`
-`}`
-
-`library("easypackages")`
-`libraries(listOfBiocPackages)`
-
-After installing R and these functions, you can install the `getGeneExpressionFromGEO`, package by cloning this repository.
 
 ## Execution instructions ##
 
