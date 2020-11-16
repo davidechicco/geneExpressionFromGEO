@@ -1,4 +1,4 @@
-#geneExpressionFromGEO #
+# geneExpressionFromGEO #
 
 `geneExpressionFromGEO`: an easy method to retrieve gene expression and its symbol from GEO accession and platform ID
 
@@ -14,7 +14,7 @@ This function has been designed for beginners and users having limited experienc
 To run `getGeneExpressionFromGEO`, you need to have the following programs and packages installed in your computer:
 
 * R (version > 3.1)
-* R Bioconductor packages **Biobase, annotate, GEOquery**
+* R Bioconductor packages `Biobase, annotate, GEOquery`
 
 You can install the `geneExpressionFromGEO` package and its dependencies from CRAN, and load it, with the following commands typed in the `R` terminal console:
 
