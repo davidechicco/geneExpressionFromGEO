@@ -1,22 +1,19 @@
-
-
-#' Function that reads in the GEO code and the platform ID of a dataset, and returns the gene expression dataframe.
+#' Function that reads in the GEO code of a dataset, and returns the gene expression dataframe.
 #' 
 #' @param datasetGeoCode the GEO code of a dataset.
-#' @param datasetPlatform the ID of the platform of the dataset.
 #' @param retrieveGeneSymbols a boolean flag stating if the function should retrieve the gene symbols or not.
 #' @param verbose a boolean flag stating if helping messages should be printed or not
 #' @return a gene expression dataset.
 #' @examples
-#' geneExpressionDF1 <- getGeneExpressionFromGEO("GSE3268", "GPL96", FALSE, FALSE)
-getGeneExpressionFromGEO <- function(datasetGeoCode, datasetPlatform, retrieveGeneSymbols, verbose = FALSE) 
+#' geneExpressionDF1 <- getGeneExpressionFromGEO("GSE3268", TRUE, TRUE)
+getGeneExpressionFromGEO <- function(datasetGeoCode, retrieveGeneSymbols, verbose = FALSE) 
 {
 
             GSE_code <- datasetGeoCode
-            thisGEOplatform <- datasetPlatform
-
 
             gset <- GEOquery::getGEO(GSE_code,  GSEMatrix =TRUE, getGPL=FALSE)
+            
+            thisGEOplatform <- toString((gset)[[1]]@annotation)
 
             if (length(gset) > 1) idx <- grep(thisGEOplatform, attr(gset, "names")) else idx <- 1
             gset <- gset[[idx]]
@@ -118,7 +115,7 @@ getGeneExpressionFromGEO <- function(datasetGeoCode, datasetPlatform, retrieveGe
                 } else {
                 
                     if (verbose == TRUE) cat("\n\n[Impossible to perform gene symbol retrieval]\n")
-                    if (verbose == TRUE) cat("We're sorry but the indicated platform (", datasetPlatform, ") is not among the platforms included in this function.\nThe gene symbol retrieval cannot be performed.\nPlease visit the https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=", datasetPlatform, " website for more information about this platform.\n\n", sep="")
+                    if (verbose == TRUE) cat("We're sorry but the indicated platform (", thisGEOplatform, ") is not among the platforms included in this function.\nThe gene symbol retrieval cannot be performed.\nPlease visit the https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=", thisGEOplatform, " website for more information about this platform.\n\n", sep="")
                     gene_expression$GeneSymbol <- NULL
                 
                 }

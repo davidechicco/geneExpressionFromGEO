@@ -1,10 +1,10 @@
 # geneExpressionFromGEO #
 
-`geneExpressionFromGEO`: an easy method to retrieve gene expression and its symbol from GEO accession and platform ID
+`geneExpressionFromGEO`: an easy method to retrieve gene expression and its symbol from GEO accession code
 
 ## Summary ##
 
-The `getGeneExpressionFromGEO()` function is an easy method that reads in the Gene Expression Omnibus (GEO) code and the platform ID of a gene expression dataset, retrieves its data from GEO, (optional) retrieves the gene symbols of the dataset, and returns a simple dataframe table containing all the data. Platforms available: GPL11532, GPL23126, GPL6244, GPL80, GPL8300, GPL80, GPL96, GPL570, GPL571, GPL20115, GPL1293,  GPL6102, GPL6104, GPL6883, GPL6884, GPL13497, GPL14550, GPL17077, GPL6480. 
+The `getGeneExpressionFromGEO()` function is an easy method that reads in the Gene Expression Omnibus (GEO) code of a gene expression dataset, retrieves its data from GEO, (optional) retrieves the gene symbols of the dataset, and returns a simple dataframe table containing all the data. Platforms available: GPL11532, GPL23126, GPL6244, GPL80, GPL8300, GPL80, GPL96, GPL570, GPL571, GPL20115, GPL1293,  GPL6102, GPL6104, GPL6883, GPL6884, GPL13497, GPL14550, GPL17077, GPL6480. 
 
 The GEO datasets are downloaded from the URL <https://ftp.ncbi.nlm.nih.gov/geo/series/>.
 This function has been designed for beginners and users having limited experience with Bioconductor.
@@ -21,10 +21,9 @@ You can install the `geneExpressionFromGEO` package and its dependencies from CR
     install.packages("geneExpressionFromGEO", repos='http://cran.us.r-project.org')
     library("geneExpressionFromGEO")
 
-
 ## Execution instructions ##
 
-To run `getGeneExpressionFromGEO`, you just need to have the GEO accession code of the dataset you want to download, and the ID of its platform. 
+To run `getGeneExpressionFromGEO`, you just need to have the GEO accession code of the dataset you want to download.
 The other two parameters are boolean. The first one allow you to decide if you want `getGeneExpressionFromGEO` to retrieve all the gene symbols of the probesets of the dataset, and assign them to the probesets.
 The last parameter allows you to decide if you want the function to print messages during its operations or not.
 
@@ -37,7 +36,7 @@ We want to retrieve the gene expression dataset with GEO accession [GSE3268](htt
     
     associateSymbolsToGenes <- TRUE
     verbose <- TRUE
-    geneExpressionDF <- getGeneExpressionFromGEO("GSE3268", "GPL96", associateSymbolsToGenes, verbose)
+    geneExpressionDF <- getGeneExpressionFromGEO("GSE3268",  associateSymbolsToGenes, verbose)
     
 ## Contacts ##
 
