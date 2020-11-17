@@ -27,7 +27,7 @@ To run `getGeneExpressionFromGEO`, you just need to have the GEO accession code 
 The other two parameters are boolean. The first one allow you to decide if you want `getGeneExpressionFromGEO` to retrieve all the gene symbols of the probesets of the dataset, and assign them to the probesets.
 The last parameter allows you to decide if you want the function to print messages during its operations or not.
 
-# An example
+## An example ##
 
 We want to retrieve the gene expression dataset with GEO accession [GSE3268](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE3268)  of the platform [GPL96](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL96):
 
