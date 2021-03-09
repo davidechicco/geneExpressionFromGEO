@@ -1,3 +1,5 @@
+
+
 #' Function that reads in the GEO code of a dataset, and returns the gene expression dataframe.
 #' 
 #' @param datasetGeoCode the GEO code of a dataset.
@@ -5,11 +7,22 @@
 #' @param verbose a boolean flag stating if helping messages should be printed or not
 #' @return a gene expression dataset.
 #' @examples
-#' geneExpressionDF1 <- getGeneExpressionFromGEO("GSE3268", TRUE, TRUE)
+#' geneExpressionDF1 <- getGeneExpressionFromGEO("GSE3268", FALSE, FALSE)
 getGeneExpressionFromGEO <- function(datasetGeoCode, retrieveGeneSymbols, verbose = FALSE) 
 {
 
             GSE_code <- datasetGeoCode
+            
+            # check   URL
+            checked_html_text <- "EMPTY_STRING"
+            checked_html_text <- xml2::read_html("https://ftp.ncbi.nlm.nih.gov/geo/series/")
+            
+            if(all(checked_html_text == "EMPTY_STRING")) {
+         
+                    cat("The web url https://ftp.ncbi.nlm.nih.gov/geo/series/ is unavailable right now. Please try again later. The function will stop here\n")
+                    return(NULL)
+         
+            } else {
 
             gset <- GEOquery::getGEO(GSE_code,  GSEMatrix =TRUE, getGPL=FALSE)
             
@@ -123,5 +136,5 @@ getGeneExpressionFromGEO <- function(datasetGeoCode, retrieveGeneSymbols, verbos
             }
             
             return(gene_expression)
-
+        }
 }   
