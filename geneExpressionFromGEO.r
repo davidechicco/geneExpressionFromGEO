@@ -1,4 +1,52 @@
 
+#' Function that reads in a URL to check and verifies if it exists (function taken from https://stackoverflow.com/a/12195574 )
+#' 
+#' @param url the URL of a webpage
+#' @return the output of a webpage verification check
+#' @examples y <- readUrl("http://stat.ethz.ch/R-manual/R-devel/library/base/html/connections.html")
+readUrl <- function(url) {
+    out <- tryCatch(
+        {
+            # Just to highlight: if you want to use more than one 
+            # R expression in the "try" part then you'll have to 
+            # use curly brackets.
+            # 'tryCatch()' will return the last evaluated expression 
+            # in case the "try" part was completed successfully
+
+
+            readLines(con=url, warn=FALSE) 
+            # The return value of `readLines()` is the actual value 
+            # that will be returned in case there is no condition 
+            # (e.g. warning or error). 
+            # You don't need to state the return value via `return()` as code 
+            # in the "try" part is not wrapped inside a function (unlike that
+            # for the condition handlers for warnings and error below)
+        },
+        error=function(cond) {
+            message(paste("URL does not seem to exist:", url))
+            message("Here's the original error message:")
+            message(cond)
+            # Choose a return value in case of error
+            return("EMPTY_STRING")
+        },
+        warning=function(cond) {
+            message(paste("URL caused a warning:", url))
+            message(cond)
+            # Choose a return value in case of warning
+            return("EMPTY_STRING")
+        },
+        finally={
+        # NOTE:
+        # Here goes everything that should be executed at the end,
+        # regardless of success or error.
+        # If you want more than one expression to be executed, then you 
+        # need to wrap them in curly brackets ({...}); otherwise you could
+        # just have written 'finally=<expression>' 
+            message(paste("Processed URL:", url))
+        }
+    )    
+    return(out)
+}
 
 #' Function that reads in the GEO code of a dataset, and returns the gene expression dataframe.
 #' 
@@ -17,11 +65,25 @@ getGeneExpressionFromGEO <- function(datasetGeoCode, retrieveGeneSymbols, verbos
             checked_html_text <- "EMPTY_STRING"
             checked_html_text <- xml2::read_html("https://ftp.ncbi.nlm.nih.gov/geo/series/")
             
+            checked_html_text_url <- "EMPTY_STRING"
+            url_to_check <- paste0("https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=", datasetGeoCode)
+            GSE_code_for_url <- GSE_code
+            GSE_code_for_url <- substr(GSE_code_for_url,1,nchar(GSE_code_for_url)-3)
+            GSE_code_for_url <- paste0(GSE_code_for_url, "nnn")
+            complete_url <- paste0("https://ftp.ncbi.nlm.nih.gov/geo/series/", GSE_code_for_url, "/", GSE_code)
+           
+           checked_html_text_url <- lapply(complete_url, readUrl)
+#             
             if(all(checked_html_text == "EMPTY_STRING")) {
          
                     cat("The web url https://ftp.ncbi.nlm.nih.gov/geo/series/ is unavailable right now. Please try again later. The function will stop here\n")
                     return(NULL)
+                    
+            } else if(all(checked_html_text_url == "EMPTY_STRING" | is.null(checked_html_text_url[[1]]) )) {
          
+                    cat("The web url ", complete_url," is unavailable right now. Please try again later. The function will stop here\n")
+                    return(NULL)        
+                    
             } else {
 
             gset <- GEOquery::getGEO(GSE_code,  GSEMatrix =TRUE, getGPL=FALSE)
