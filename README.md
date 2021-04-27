@@ -25,20 +25,19 @@ If it is impossible to download the package and its dependencies from CRAN, you 
 
     Rscript install_packages.r
     
-Then, you can download the `geneExpressionFromGEO` package from this GitHub repository.
+Then, you can download the `geneExpressionFromGEO` package from this GitHub repository, and execute the `geneExpressionFromGEO.r` file:
+
+    Rscript geneExpressionFromGEO.r
 
 ## Execution instructions ##
 
-To run `getGeneExpressionFromGEO`, you just need to have the GEO accession code of the dataset you want to download.
+To run `getGeneExpressionFromGEO`, the only parameter need to have is the GEO accession code of the dataset you want to download.
 The other two parameters are boolean. The first one allow you to decide if you want `getGeneExpressionFromGEO` to retrieve all the gene symbols of the probesets of the dataset, and assign them to the probesets.
 The last parameter allows you to decide if you want the function to print messages during its operations or not.
 
 ## An example ##
 
 We want to retrieve the gene expression dataset with GEO accession [GSE3268](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE3268)  of the platform [GPL96](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL96):
-
-    install.packages("geneExpressionFromGEO", repos='http://cran.us.r-project.org')
-    library("geneExpressionFromGEO")
     
     associateSymbolsToGenes <- TRUE
     verbose <- TRUE
