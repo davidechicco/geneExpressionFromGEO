@@ -1,4 +1,17 @@
 
+
+#' Function that returns numeric values with 2 decimal numbers.
+#' 
+#' @param x input numeric value with N decimal numbers.
+#' @return a numeric value with 2 decimal numbers.
+#' @examples
+#' aaa <- dec_two(8.31232)
+ dec_two <- function(x) {
+  return (format(round(x, 2), nsmall = 2));
+}
+
+
+
 #' Function that reads in a URL to check and verifies if it exists (function taken from https://stackoverflow.com/a/12195574 )
 #' 
 #' @param url the URL of a webpage
@@ -81,7 +94,7 @@ getGeneExpressionFromGEO <- function(datasetGeoCode, retrieveGeneSymbols, verbos
                     
             } else if(all(checked_html_text_url == "EMPTY_STRING" | is.null(checked_html_text_url[[1]]) )) {
          
-                    cat("The web url ", complete_url," is unavailable right now. Please try again later. The function will stop here\n")
+                    cat("The web url ", complete_url," is unavailable right now (Error 404 webpage not found). The GEO code might be wrong. The function will stop here\n", sep="")
                     return(NULL)        
                     
             } else {
