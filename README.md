@@ -23,7 +23,7 @@ You can install the `geneExpressionFromGEO` package and its dependencies from CR
     
 If it is impossible to download the package and its dependencies from CRAN, you can execute the `install_packages.r` script that will install all the dependencies automatically:
 
-    Rscript install_packages
+    Rscript install_packages.r
     
 Then, you can download the `geneExpressionFromGEO` package from this GitHub repository.
 
