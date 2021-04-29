@@ -5,9 +5,7 @@ set.seed(11)
 
 ## Script that installs the R packages requested by the getGeneExpressionFromGEO() function
 
-cat(":::: Script that installs the R packages requested by the GeneExpressionFromGEO R package\n")
-cat(":::: ")
-print(Sys.time())
+cat(":::: Script that installs the R packages required by the GeneExpressionFromGEO R package\n")
 
 # Here we install the CRAN missing packages
 list.of.packages <- c("easypackages", "xml2", "markdown", "knitr", "rmarkdown", "pacman") # other packages
@@ -32,4 +30,4 @@ library("easypackages")
 libraries(list.of.packages)
 libraries(listOfBiocPackages)
 
-cat(":::: Additional information about this package can be found on the https://github.com/davidechicco/geneExpressionFromGEO website\n")
+cat(":::: Additional information about the geneExpressionFromGEO R package can be found on the https://github.com/davidechicco/geneExpressionFromGEO website\n\n")
