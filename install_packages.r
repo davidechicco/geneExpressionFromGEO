@@ -30,4 +30,4 @@ library("easypackages")
 libraries(list.of.packages)
 libraries(listOfBiocPackages)
 
-cat(":: Additional information about the geneExpressionFromGEO R package ::\n:: can be found on the https://github.com/davidechicco/geneExpressionFromGEO website ::\n\n")
+cat("\n:: Additional information about the geneExpressionFromGEO R package ::\n:: can be found on the https://github.com/davidechicco/geneExpressionFromGEO website ::\n\n")
