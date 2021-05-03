@@ -18,6 +18,7 @@ To run `getGeneExpressionFromGEO`, you need to have the following programs and p
 
 You can install the `geneExpressionFromGEO` package and its dependencies from CRAN, and load it, with the following commands typed in the `R` terminal console:
 
+    R
     install.packages("geneExpressionFromGEO", repos='http://cran.us.r-project.org')
     library("geneExpressionFromGEO")
     
@@ -44,6 +45,11 @@ We want to retrieve the gene expression dataset with GEO accession [GSE3268](htt
     associateSymbolsToGenes <- TRUE
     verbose <- TRUE
     geneExpressionDF <- getGeneExpressionFromGEO("GSE3268",  associateSymbolsToGenes, verbose)
+    
+## Article
+Additional information about this project is available in the following peer-reviewed published article:
+
+> Davide Chicco. "geneExpressionFromGEO: an R package to facilitate data reading from Gene Expression Omnibus (GEO)". In: Agapito G. (eds) Microarray Data Analysis: Methods and Protocols. Methods in Molecular Biology, Springer. Humana, New York City, New York, USA. In press.
     
 ## Contacts ##
 
