@@ -23,13 +23,13 @@ You can install the `geneExpressionFromGEO` package and its dependencies from CR
     
 If it is impossible to download the package and its dependencies from CRAN, you can download the `geneExpressionFromGEO` package from this GitHub repository, and then can execute the `install_packages.r` script that will install all the dependencies automatically:
 
-    $ cd geneExpressionFromGEO
-    $ R
-    > source("install_packages.r")
+    cd geneExpressionFromGEO
+    R
+    source("install_packages.r")
     
 Afterwards,  you execute the `geneExpressionFromGEO.r` file from an R terminal:
 
-    > source("geneExpressionFromGEO.r")
+    source("geneExpressionFromGEO.r")
 
 ## Execution instructions ##
 
@@ -41,9 +41,9 @@ The last parameter allows you to decide if you want the function to print messag
 
 We want to retrieve the gene expression dataset with GEO accession [GSE3268](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE3268)  of the platform [GPL96](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL96). Here are the commands we can use in a R shell environment:
     
-    > associateSymbolsToGenes <- TRUE
-    > verbose <- TRUE
-    > geneExpressionDF <- getGeneExpressionFromGEO("GSE3268",  associateSymbolsToGenes, verbose)
+    associateSymbolsToGenes <- TRUE
+    verbose <- TRUE
+    geneExpressionDF <- getGeneExpressionFromGEO("GSE3268",  associateSymbolsToGenes, verbose)
     
 ## Contacts ##
 
