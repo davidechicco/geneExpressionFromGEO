@@ -8,7 +8,7 @@ set.seed(11)
 cat(":: Script that installs the R packages ::\n:: required by the GeneExpressionFromGEO R package ::\n\n")
 
 # Here we install the CRAN missing packages
-list.of.packages <- c("easypackages", "xml2", "markdown", "knitr", "rmarkdown", "pacman") # other packages
+list.of.packages <- c("easypackages", "xml2", "markdown", "knitr", "rmarkdown", "pacman", "R.utils") # other packages
 new_packages_to_install <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 if(length(new_packages_to_install)) install.packages(new_packages_to_install, repos="https://utstat.toronto.edu/cran/")
 
