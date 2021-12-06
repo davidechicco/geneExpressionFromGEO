@@ -49,7 +49,7 @@ We want to retrieve the gene expression dataset with GEO accession [GSE3268](htt
 ## Article
 Additional information about this project will be available in the following peer-reviewed published article:
 
-> Davide Chicco, ["geneExpressionFromGEO: an R package to facilitate data reading from Gene Expression Omnibus (GEO)"](https://www.springer.com/us/book/9781071618387). Microarray Data Analysis, Methods in Molecular Biology, volume 2401, Springer Protocols, New York City, New York, USA, 2021. In press.
+> Davide Chicco, ["geneExpressionFromGEO: an R package to facilitate data reading from Gene Expression Omnibus (GEO)"](https://www.springer.com/us/book/9781071618387). Microarray Data Analysis, Methods in Molecular Biology, volume 2401, chapter 12, Springer Protocols, New York City, New York, USA, 2021. In press.
     
 ## Contacts ##
 
