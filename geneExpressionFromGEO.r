@@ -213,3 +213,62 @@ getGeneExpressionFromGEO <- function(datasetGeoCode, retrieveGeneSymbols, verbos
             return(gene_expression)
         }
 }   
+
+#' Function that reads in the GEO code of a dataset, and returns the complete gene expression dataframe by printing its features (if requested).
+#'
+#' @param GSE_code the GEO code of a dataset.
+#' @param verbose a boolean flag stating if helping messages should be printed or not
+#' @return a complete gene expression dataset.
+#' @examples
+#' geneExpressionDF <- getDatasetFeaturesFromGEOcode("GSE20181", FALSE)
+getDatasetFeaturesFromGEOcode <- function(GSE_code, verbose = FALSE) {
+
+            # check   URL
+            checked_html_text <- "EMPTY_STRING"
+            checked_html_text_var <- readUrl("https://ftp.ncbi.nlm.nih.gov/geo/series/")
+
+            if(all(checked_html_text_var == "EMPTY_STRING" | is.null(checked_html_text_var[[1]]) )) {
+
+                    cat("The web url https://ftp.ncbi.nlm.nih.gov/geo/series/ is unavailable right now (Error 404 webpage not found). The GEO code might be wrong. The function will stop here\n", sep="")
+                    return(NULL)
+
+            }
+
+            checked_html_text <- xml2::read_html("https://ftp.ncbi.nlm.nih.gov/geo/series/")
+
+            checked_html_text_url <- "EMPTY_STRING"
+            url_to_check <- paste0("https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=", GSE_code)
+            GSE_code_for_url <- GSE_code
+            GSE_code_for_url <- substr(GSE_code_for_url,1,nchar(GSE_code_for_url)-3)
+            GSE_code_for_url <- paste0(GSE_code_for_url, "nnn")
+            complete_url <- paste0("https://ftp.ncbi.nlm.nih.gov/geo/series/", GSE_code_for_url, "/", GSE_code)
+
+           # checked_html_text_url <- lapply(complete_url, readUrl)
+           checked_html_text_url <- readUrl(complete_url)
+
+            if(all(checked_html_text == "EMPTY_STRING")) {
+
+                    cat("The web url https://ftp.ncbi.nlm.nih.gov/geo/series/ is unavailable right now. Please try again later. The function will stop here\n")
+                    return(NULL)
+
+            } else if(all(checked_html_text_url == "EMPTY_STRING" | is.null(checked_html_text_url[[1]]) )) {
+
+                    cat("The web url ", complete_url," is unavailable right now (Error 404 webpage not found). The GEO code might be wrong. The function will stop here\n", sep="")
+                    return(NULL)
+
+            } else {
+
+            gset <- GEOquery::getGEO(GSE_code,  GSEMatrix =TRUE, getGPL=FALSE)
+
+            thisGEOplatform <- toString((gset)[[1]]@annotation)
+
+            if (length(gset) > 1) idx <- grep(thisGEOplatform, attr(gset, "names")) else idx <- 1
+            gset <- gset[[idx]]
+
+            if(verbose) cat("sort(str(gset@phenoData@data))\n")
+            if(verbose) print(sort(utils::str(gset@phenoData@data)))
+
+            return(gset)
+
+        }
+}
